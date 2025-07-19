@@ -5,14 +5,14 @@ This API is created by me for build my personal project that will be helpful in 
 ## Built With
 
 [![Go/Golang](https://img.shields.io/badge/Golang-1.23.2-cyan.svg?style=rounded-square)](https://go.dev/)
-[![Fiber](https://img.shields.io/badge/Fiber-v.2.52.8-blue.svg?style=rounded-square)](https://gin-gonic.com/docs/)
+[![Fiber](https://img.shields.io/badge/Fiber-v.2.52.8-blue.svg?style=rounded-square)](https://gofiber.io/)
 [![GORM](https://img.shields.io/badge/Gorm-v.1.30.0-blue.svg?style=rounded-square)](https://gorm.io/)
 
 
 ## Requirements
 
 1. <a href="https://go.dev/">Go</a>
-2. <a href="https://gofiber.io/">Gin</a>
+2. <a href="https://gofiber.io/">Fiber</a>
 3. <a href="https://gorm.io/">GORM</a>
 4. <a href="https://www.mysql.com/">MySQL</a>
 
