@@ -24,7 +24,7 @@ This API is created by me for build my personal project that will be helpful in 
 4. Create a database with the name #nama_database, and Import file sql to **phpmyadmin**
 5. Open Postman desktop application or Chrome web app extension that has installed before
 6. Choose HTTP Method and enter request url.(ex. localhost:3600/)
-7. You can see all the end point [here](https://documenter.getpostman.com/view/14780095/2sAXjM3XAX)
+7. You can see all the end point [here](https://documenter.getpostman.com/view/14780095/2sB34kDye1)
 8. Type `go run main.go` to activated the server.
 9. If you have "air" package installed, then you can type `air server --port [YOUR_APP_PORT]`.(ex. "air server --port 3600")
 
