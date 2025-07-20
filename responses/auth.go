@@ -18,6 +18,7 @@ type LoginResponse struct {
 	UserUuid     string `json:"user_uuid"`
 	UserUsername string `json:"user_username"`
 	UserEmail    string `json:"user_email"`
+	UserRole     string `json:"user_role"`
 	UserToken    string `json:"user_token"`
 }
 
@@ -37,6 +38,7 @@ func GetLoginResponse(userRsps models.User, tokenString string) LoginResponse {
 		UserUuid:     userRsps.UserUUID,
 		UserUsername: userRsps.UserUsername,
 		UserEmail:    userRsps.UserEmail,
+		UserRole:     userRsps.UserRole,
 		UserToken:    tokenString,
 	}
 }
