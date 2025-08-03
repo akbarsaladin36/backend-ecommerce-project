@@ -16,3 +16,7 @@ type UpdateUserInput struct {
 	Address     string `json:"address"`
 	PhoneNumber string `json:"phone_number"`
 }
+
+type UpdateUserStatusInput struct {
+	StatusCd string `json:"status_cd"`
+}

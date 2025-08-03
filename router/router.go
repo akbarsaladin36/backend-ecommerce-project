@@ -63,6 +63,7 @@ func adminRoutes(app *fiber.App) {
 	v1Admin.Get("/users/detail-user/:username", userControllers.FindUserController)
 	v1Admin.Post("/users", userControllers.CreateUserController)
 	v1Admin.Patch("/users/detail-user/:username", userControllers.UpdateUserController)
+	v1Admin.Patch("/users/detail-user/status-user/:username", userControllers.UpdateUserStatusController)
 	v1Admin.Delete("/users/detail-user/:username", userControllers.DeleteUserController)
 
 	// Products

@@ -39,6 +39,12 @@ type UpdateUserResponse struct {
 	UserUpdatedUserUuid string    `json:"updated_user_uuid"`
 	UserUpdatedUsername string    `json:"updated_user_username"`
 }
+type UpdateUserStatusResponse struct {
+	UserStatusCd        string    `json:"user_status_cd"`
+	UserUpdatedDate     time.Time `json:"updated_user_date"`
+	UserUpdatedUserUuid string    `json:"updated_user_uuid"`
+	UserUpdatedUsername string    `json:"updated_user_username"`
+}
 
 func GetUserResponse(userRsps models.User) UserResponse {
 	return UserResponse{
@@ -75,6 +81,15 @@ func GetUpdateUserResponse(userRsps models.User) UpdateUserResponse {
 		UserLastName:        userRsps.UserLastName,
 		UserAddress:         userRsps.UserAddress,
 		UserPhoneNumber:     userRsps.UserPhoneNumber,
+		UserUpdatedDate:     userRsps.UserUpdatedDate,
+		UserUpdatedUserUuid: userRsps.UserUpdatedUserUuid,
+		UserUpdatedUsername: userRsps.UserUpdatedUsername,
+	}
+}
+
+func GetUpdateUserStatusResponse(userRsps models.User) UpdateUserStatusResponse {
+	return UpdateUserStatusResponse{
+		UserStatusCd:        userRsps.UserStatusCd,
 		UserUpdatedDate:     userRsps.UserUpdatedDate,
 		UserUpdatedUserUuid: userRsps.UserUpdatedUserUuid,
 		UserUpdatedUsername: userRsps.UserUpdatedUsername,

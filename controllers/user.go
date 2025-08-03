@@ -136,6 +136,43 @@ func (uc *userController) UpdateUserController(c *fiber.Ctx) error {
 	})
 }
 
+func (uc *userController) UpdateUserStatusController(c *fiber.Ctx) error {
+	username := c.Params("username")
+
+	var userUpdateStatusInput inputs.UpdateUserStatusInput
+
+	err := c.BodyParser(&userUpdateStatusInput)
+
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status":  fiber.StatusBadRequest,
+			"message": "Invalid request body",
+			"error":   err.Error(),
+		})
+	}
+
+	_, errCheckUser := uc.userService.FindOneService(username)
+
+	if errCheckUser != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"status":  fiber.StatusNotFound,
+			"message": fmt.Sprintf("A username %s data are not found!", username),
+		})
+	}
+
+	currentUser := middleware.CurrentUser(c)
+
+	newUpdateUser, _ := uc.userService.UpdateStatusService(username, userUpdateStatusInput, currentUser)
+
+	updateUserRsps := responses.GetUpdateUserResponse(newUpdateUser)
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status":  fiber.StatusOK,
+		"message": fmt.Sprintf("A username %s data are succesfully updated!", username),
+		"data":    updateUserRsps,
+	})
+}
+
 func (uc *userController) DeleteUserController(c *fiber.Ctx) error {
 	username := c.Params("username")
 

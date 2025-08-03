@@ -13,6 +13,7 @@ type UserService interface {
 	FindOneService(username string) (models.User, error)
 	CreateService(userCreateInput inputs.CreateUserInput, currentUser map[string]string) (models.User, error)
 	UpdateService(username string, userUpdateInput inputs.UpdateUserInput, currentUser map[string]string) (models.User, error)
+	UpdateStatusService(username string, userUpdateStatusInput inputs.UpdateUserStatusInput, currentUser map[string]string) (models.User, error)
 	DeleteService(username string) (models.User, error)
 }
 
@@ -68,6 +69,19 @@ func (us *userService) UpdateService(username string, userUpdateInput inputs.Upd
 	checkUser.UserLastName = userUpdateInput.LastName
 	checkUser.UserAddress = userUpdateInput.Address
 	checkUser.UserPhoneNumber = userUpdateInput.PhoneNumber
+	checkUser.UserUpdatedDate = time.Now()
+	checkUser.UserUpdatedUserUuid = currentUser["user_uuid"]
+	checkUser.UserUpdatedUsername = currentUser["user_username"]
+
+	updateUser, err := us.userRepository.Update(checkUser)
+
+	return updateUser, err
+}
+
+func (us *userService) UpdateStatusService(username string, userUpdateStatusInput inputs.UpdateUserStatusInput, currentUser map[string]string) (models.User, error) {
+	checkUser, _ := us.userRepository.FindOne(username)
+
+	checkUser.UserStatusCd = userUpdateStatusInput.StatusCd
 	checkUser.UserUpdatedDate = time.Now()
 	checkUser.UserUpdatedUserUuid = currentUser["user_uuid"]
 	checkUser.UserUpdatedUsername = currentUser["user_username"]
