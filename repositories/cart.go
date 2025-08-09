@@ -7,8 +7,8 @@ import (
 )
 
 type CartRepository interface {
-	FindAll() ([]models.Cart, error)
-	FindAllByUserId(user_uuid string) ([]models.Cart, error)
+	FindAll() ([]models.CartWithProduct, error)
+	FindAllByUserId(user_uuid string) ([]models.CartWithProduct, error)
 	FindOne(cart_code string) (models.Cart, error)
 	FindProduct(product_code string) (models.Product, error)
 	Create(cart models.Cart) (models.Cart, error)
@@ -24,18 +24,18 @@ func NewCartRepository(db *gorm.DB) *cartRepository {
 	return &cartRepository{db}
 }
 
-func (cr *cartRepository) FindAll() ([]models.Cart, error) {
-	var carts []models.Cart
+func (cr *cartRepository) FindAll() ([]models.CartWithProduct, error) {
+	var carts []models.CartWithProduct
 
-	err := cr.db.Find(&carts).Error
+	err := cr.db.Raw("SELECT carts.*, products.* FROM carts JOIN products ON carts.product_code = products.product_code").Scan(&carts).Error
 
 	return carts, err
 }
 
-func (cr *cartRepository) FindAllByUserId(user_uuid string) ([]models.Cart, error) {
-	var carts []models.Cart
+func (cr *cartRepository) FindAllByUserId(user_uuid string) ([]models.CartWithProduct, error) {
+	var carts []models.CartWithProduct
 
-	err := cr.db.Where("user_uuid = ?", user_uuid).Find(&carts).Error
+	err := cr.db.Raw("SELECT carts.*, products.* FROM carts JOIN products ON carts.product_code = products.product_code").Scan(&carts).Error
 
 	return carts, err
 }

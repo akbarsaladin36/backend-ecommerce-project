@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Cart struct {
 	CartId              int       `json:"cart_id" gorm:"primaryKey"`
@@ -17,4 +19,10 @@ type Cart struct {
 	CartUpdatedDate     time.Time `json:"updated_cart_date"`
 	CartUpdatedUserUuid string    `json:"updated_cart_user_uuid" gorm:"type:varchar(200)"`
 	CartUpdatedUsername string    `json:"updated_cart_user_username" gorm:"type:varchar(100)"`
+}
+
+type CartWithProduct struct {
+	Cart
+	ProductName        string `json:"product_name"`
+	ProductDescription string `json:"product_description"`
 }

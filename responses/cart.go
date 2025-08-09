@@ -15,6 +15,12 @@ type CartResponse struct {
 	CartStatusCd    string `json:"cart_status_cd"`
 }
 
+type CartWithProductResponse struct {
+	Cart               models.Cart `json:"cart"`
+	ProductName        string      `json:"product_name"`
+	ProductDescription string      `json:"product_description"`
+}
+
 type CreateCartResponse struct {
 	UserUuid            string    `json:"user_uuid"`
 	ProductCode         string    `json:"product_code"`
@@ -41,7 +47,7 @@ type UpdateCartResponse struct {
 	CartUpdatedUsername string    `json:"updated_cart_user_username"`
 }
 
-func GetCartResponse(cartRsps models.Cart) CartResponse {
+func GetDetailCartResponse(cartRsps models.Cart) CartResponse {
 	return CartResponse{
 		UserUuid:        cartRsps.UserUuid,
 		ProductCode:     cartRsps.ProductCode,
@@ -50,6 +56,14 @@ func GetCartResponse(cartRsps models.Cart) CartResponse {
 		CartPrice:       cartRsps.CartPrice,
 		CartQuantity:    cartRsps.CartQuantity,
 		CartStatusCd:    cartRsps.CartStatusCd,
+	}
+}
+
+func GetCartResponse(cartRsps models.CartWithProduct) CartWithProductResponse {
+	return CartWithProductResponse{
+		Cart:               cartRsps.Cart,
+		ProductName:        cartRsps.ProductName,
+		ProductDescription: cartRsps.ProductDescription,
 	}
 }
 

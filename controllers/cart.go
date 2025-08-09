@@ -36,7 +36,7 @@ func (cc *cartController) FindCartsController(c *fiber.Ctx) error {
 		})
 	}
 
-	var cartResponse []responses.CartResponse
+	var cartResponse []responses.CartWithProductResponse
 
 	for _, cart := range carts {
 		cartRsps := responses.GetCartResponse(cart)
@@ -71,7 +71,7 @@ func (cc *cartController) FindCartsByUserIdController(c *fiber.Ctx) error {
 		})
 	}
 
-	var cartResponse []responses.CartResponse
+	var cartResponse []responses.CartWithProductResponse
 
 	for _, cart := range carts {
 		cartRsps := responses.GetCartResponse(cart)
@@ -98,7 +98,7 @@ func (cc *cartController) FindCartController(c *fiber.Ctx) error {
 		})
 	}
 
-	cartRsps := responses.GetCartResponse(cart)
+	cartRsps := responses.GetDetailCartResponse(cart)
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status":  fiber.StatusOK,

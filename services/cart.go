@@ -10,8 +10,8 @@ import (
 )
 
 type CartService interface {
-	FindAllService() ([]models.Cart, error)
-	FindAllByUserIdService(user_uuid string) ([]models.Cart, error)
+	FindAllService() ([]models.CartWithProduct, error)
+	FindAllByUserIdService(user_uuid string) ([]models.CartWithProduct, error)
 	FindOneService(cart_code string) (models.Cart, error)
 	CreateService(createCartInput inputs.CreateCartInput, currentUser map[string]string) (models.Cart, error)
 	UpdateService(cart_code string, updateCartInput inputs.UpdateCartInput, currentUser map[string]string) (models.Cart, error)
@@ -26,13 +26,13 @@ func NewCartService(cartRepository repositories.CartRepository) *cartService {
 	return &cartService{cartRepository}
 }
 
-func (cs *cartService) FindAllService() ([]models.Cart, error) {
+func (cs *cartService) FindAllService() ([]models.CartWithProduct, error) {
 	carts, err := cs.cartRepository.FindAll()
 
 	return carts, err
 }
 
-func (cs *cartService) FindAllByUserIdService(user_uuid string) ([]models.Cart, error) {
+func (cs *cartService) FindAllByUserIdService(user_uuid string) ([]models.CartWithProduct, error) {
 	carts, err := cs.cartRepository.FindAllByUserId(user_uuid)
 
 	return carts, err
