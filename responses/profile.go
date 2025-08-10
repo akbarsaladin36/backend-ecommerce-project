@@ -5,10 +5,11 @@ import (
 )
 
 type ProfileResponse struct {
-	UserFirstName   string `json:"user_first_name"`
-	UserLastName    string `json:"user_last_name"`
-	UserAddress     string `json:"user_address"`
-	UserPhoneNumber string `json:"user_phone_number"`
+	UserFirstName                string `json:"user_first_name"`
+	UserLastName                 string `json:"user_last_name"`
+	UserAddress                  string `json:"user_address"`
+	UserPhoneNumber              string `json:"user_phone_number"`
+	UserBalanceTransactionAmount string `json:"user_balance_transaction_amount"`
 }
 
 type ProfileBalanceTransactionResponse struct {
@@ -18,10 +19,11 @@ type ProfileBalanceTransactionResponse struct {
 
 func GetProfileResponse(userRsps models.User) ProfileResponse {
 	return ProfileResponse{
-		UserFirstName:   userRsps.UserFirstName,
-		UserLastName:    userRsps.UserLastName,
-		UserAddress:     userRsps.UserAddress,
-		UserPhoneNumber: userRsps.UserPhoneNumber,
+		UserFirstName:                userRsps.UserFirstName,
+		UserLastName:                 userRsps.UserLastName,
+		UserAddress:                  userRsps.UserAddress,
+		UserPhoneNumber:              userRsps.UserPhoneNumber,
+		UserBalanceTransactionAmount: userRsps.UserBalanceTransactionAmount,
 	}
 }
 
